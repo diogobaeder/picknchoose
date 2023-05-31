@@ -50,7 +50,7 @@ The idea is to do something similar to what NATS does, which is to organize mess
 
 ### Language
 
-The very first decision I have for this project is to use Rust, because:
+The very first decision I have for this project is to use [Rust](https://www.rust-lang.org/), because:
 * It's a very efficient/fast language
 * It's a very secure language
 * It will avoid the issues I would have with any garbage collector-based language (like Go, Java etc)
@@ -62,3 +62,7 @@ The very first decision I have for this project is to use Rust, because:
 The system has to be durable, period. If it goes down for some reason, it has to be able to pick up from where it was and continue to operate - like [Kafka](https://kafka.apache.org/) does, for example. Or RabbitMQ, in the case of [durable queues](https://www.rabbitmq.com/queues.html#durability). Or NATS with [JetStream](https://docs.nats.io/nats-concepts/jetstream).
 
 This obviously means the system would end up being more complex and slower than if we had in-memory messages only, but it's a good trade-off since disaster recovery is important to me.
+
+### Name
+
+I don't have a strong reason behind the name, it just came to my mind and I used it. Plus, it sounds funnily similar to "Pikachu" (I'm not a fan of Pokémon, but I know what a Pikachu is). Since this project is basically a hobby (at the moment), I want to have fun with it, so...
