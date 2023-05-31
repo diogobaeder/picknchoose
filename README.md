@@ -45,3 +45,20 @@ we would severely reduce the de-serialization cost for it, if the consumer is on
 ### Subjects
 
 The idea is to do something similar to what NATS does, which is to organize messages by subjects. While we could just go with context-based filtering, that mechanism is still a bit more complex and probably more expensive than sending messages by subject (no, I have no data yet to support this affirmation - but I plan to have once I have some implementation of this).
+
+## Decisions
+
+### Language
+
+The very first decision I have for this project is to use Rust, because:
+* It's a very efficient/fast language
+* It's a very secure language
+* It will avoid the issues I would have with any garbage collector-based language (like Go, Java etc)
+* It's getting significant adoption by engineers, so I have a higher chance of getting collaboration to the project (this is why I didn't choose Zig, for example)
+* I just like the language, and liking some technology is important to keep me motivated
+
+### Durability
+
+The system has to be durable, period. If it goes down for some reason, it has to be able to pick up from where it was and continue to operate - like [Kafka](https://kafka.apache.org/) does, for example. Or RabbitMQ, in the case of [durable queues](https://www.rabbitmq.com/queues.html#durability). Or NATS with [JetStream](https://docs.nats.io/nats-concepts/jetstream).
+
+This obviously means the system would end up being more complex and slower than if we had in-memory messages only, but it's a good trade-off since disaster recovery is important to me.
